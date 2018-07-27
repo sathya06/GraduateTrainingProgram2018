@@ -1,0 +1,92 @@
+
+ProblemSet00-Agile
+Submitted BY sathya.a.loganathan
+
+1)How does agile testing (development) methodology differ from other testing (development) methodologies?
+(*)This methodology is very flexible and adjustable and can adapt to the project needs
+(*)The success of the project in Agile model is measured by the Business value delivered.
+(*)Less documentation is required in Agile.
+(*)Agile methodology has many cycles or iterations which is also known as Sprints.
+(*)There is minimal upfront planning in Agile methodology.
+(*)Usually in Agile models the chances of occurrence of unknown risks are more which can have major impact in the project.
+
+2)What are the most important components of Agile?
+(*)Epic
+(*)User Story
+(*)Feature
+(*)Task
+
+3)What is difference between Epic,features, User stories & Tasks?
+(*)"user stories" are short requirements or requests written from the perspective of an end user.
+(*)"Epics" are large bodies of work (End product).Epic - a User Story that is too big to fit into a sprint. 
+(*)"Feature" estimates help drive scheduling across releases and iterations
+(*)"Tasks" Epics that can be broken down into a number of smaller tasks.Task estimates help drive resource loading within an iteration
+
+4)Explain what is a product backlog in Scrum
+(*)The product backlog comprises an ordered list of product requirements that a scrum team maintains for a product.
+(*)The product backlog: 
+	(1)Captures requests to modify a product—including new features, replacing old features, removing features, and fixing issues
+	(2)Ensures the development team has work that maximizes business benefit to the product owner
+(*)Activities:
+Estimate,insert,Reprioritize the items,delete.
+(*)The product owner and the scrum team come together and write down everything that must be prioritized
+
+5)What is Scrum Sprint?
+sprint planning meetings ->Scrum sprints ->Scrum daily meetings ->Sprint review ->sprint retrospective 
+
+6)What are the artifacts of Scrum process?
+(*)Product Backlog
+(*)Sprint Backlog
+(*)Increment
+
+7)What do you understand by sprint backlog?
+(*)The Sprint Backlog is the set of Product Backlog items selected for the Sprint, plus a plan for delivering the product.
+(*)The Team modifies the Sprint Backlog throughout the Sprint, and the Sprint Backlog emerges during the Sprint.
+
+8)What is the role of the Product Owner?
+(*)The product owner has the responsibility to deliver a complete picture of what to build and to convey that idea to the team.
+(*)The Product Owner is the sole person responsible for managing the Product Backlog.
+
+9)What are the different roles in Scrum
+(*)ScrumMaster
+(*)Product Owner
+(*)Team
+
+10)What are the responsibilities of a Scrum Master 
+(*)Monitoring & tracking 
+(*)Reporting& comunication
+(*)Process check master
+(*)Resolve impediments
+(*)Resolve conflicts 
+(*)shield the team
+
+11)What are different ceremonies and their importance in Scrum?
+(*)Sprint Planning
+(*)Sprint Review
+(*)Daily Meeting
+(*)Retrospective Meeting
+
+12)What is the difference between Sprint Planning Meeting and Sprint Retrospective Meeting
+(*)Sprint Retrospective :(Product Owner,Scrum Master,Team)
+   1)What went well?
+   2)What would we improve next Sprint?
+(*)Sprint Planning meeting:(Product Owner,Scrum Master,Team)
+   1)Create Sprint Backlog from product backlog
+   2)how to Achive the Sprint goal?
+   3)Estimate Sprint backlog in hours
+
+13))What is the difference between agile & scrum
+(*)The Agile methodology is used in project management and it helps project makers to build software applications. 
+(*)Scrum is a type of agile approach that is used in development of software applications. It is just a framework and not a methodology or a full process.
+
+14)Explain Agile in 30 seconds.
+It’s an iterative approach that delivers small chunks of value per sprint (2weeks).
+Analysis, design, coding and testing happens concurrently.
+
+15)What is the Daily Stand-Up?
+(*)It is the meeting for the development team to create a plan for the day.
+(*)Scrum master's accountability is to ensure it happens.
+(*)3 things :
+   (1)What did you do yesterday?
+   (2) What will you do today?
+   (3) Are there any impediments in your way?
