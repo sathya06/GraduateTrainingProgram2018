@@ -1,0 +1,36 @@
+ ProblemSet02-CI_CD  9th AUGUST 2018 
+ Submitted BY sathya.a.loganathan 
+
+
+1)Why should you use a version control tool?
+If you made any changes to code ,collaboration with the team,backup too old,maintain multiple versions,to enable difference between versions,history of some code,submit a code in someone else's code,experimenting with the new feature without interfering with the working code.
+
+2)Which of the following correctly describes what a unit test is 
+It is a level of software testing where the individual units are tested.
+Unit tests usually involve asserting the final output against the expected output using the inputs provided as part of the tests
+
+3)What are the various build tools used in Java?
+maven
+ant 
+gradle
+
+4)One of your projects fail compilation errors due to missing JAR files that are needed for your project. Which of the following tools can help to fix the errors
+Apache Maven
+
+5)What is meant by a "commit" in a version control Tool? 
+commit:
+storing changes from private workspace to the central workspace.
+
+6)Which utility can be used to move deployment packages across servers;
+SSH
+
+7)How is system testing different from unit testing and Integration testing?
+unit testing-smallest testable part of an application 
+system testing - to verify that the system to be delivered meets the specification and its purpose.
+integration testing- interfaces between components, interactions to different parts of the system 
+
+8)What are the some of the metrics that are measured/evaluated during a performance testing phase?
+Performance Testing-to determine how fast some aspect of a system performs under a particular workload
+
+9)What is meant by Regression testing?
+The purpose of the regression testing is to find the bugs which may get introduced accidentally because of the new changes or modification.
