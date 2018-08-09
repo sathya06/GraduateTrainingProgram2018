@@ -1,0 +1,36 @@
+
+ ProblemSet00-Agile  9th August 2018 
+ Submitted BY sathya.a.loganathan 
+
+1)The term environment refers to the state of a computer, determined by a combination of software, basic hardware, and which programs are running. 
+
+2)Name different Environment used in Cigna
+Development
+system
+integration
+UAT/PVS
+Production
+
+3)Does different Environment differ.
+No,they must be similar environment so that it  ensures the testing with the similar kind of thing to ensure quality.
+
+4)test based environment
+system
+integration
+UAT/PVS
+
+5)Continuous integration is the new code that gets commited to the repository and performs the unit test and then taken to build phase using built tools.
+Continuous delivery-On successful testing,this is pushed into the production environment and it is available through all times.
+
+6)software change reaches production more frequently, providing more opportunities for customers to experience and provide feedback on change.
+
+7)building-compiling and linking
+
+8)pakaging-distributables/executables/documentation/resources out of your build directory that are given to the users.
+
+9)some build tools:
+Gradle
+maven
+Ant
+
+10)Artifacts are the "things" that are produced by people involved in the process. Examples would be design documents, data models, workflow diagrams, test matrices and plans.
