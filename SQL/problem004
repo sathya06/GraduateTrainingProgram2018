@@ -1,0 +1,186 @@
+
+ ProblemSet<04>, August 23 2018  
+ Submission by sathya.a.loganathan  
+
+
+create table Highschooler(ID int, name text, grade int);
+
+create table Friend(ID1 int, ID2 int);
+
+create table Likes(ID1 int, ID2 int);
+
+
+
+ 1)select id2,id1  from friend inner join (select id from highschooler where name='Gabriel')as t where id1=t.id order by id1;
++------+------+
+| id2  | id1  |
++------+------+
+| 1709 | 1689 |
+| 1782 | 1689 |
+| 1510 | 1689 |
+| 1501 | 1911 |
+| 1247 | 1911 |
++------+------+
+5 rows in set (0.00 sec)
+
+2)For every student who likes someone 2 or more grades younger than themselves, return that student's name and grade, and the name and grade of the student they like. (1 point possible)
+ select  name1, grade1, name2, grade2 from
+    (select h1.name as name1 , h1.grade as grade1 , h2.name as name2 , h2.grade as grade2, h1.grade-h2.grade as gradeDiff from Highschooler h1
+    inner join likes on likes.ID1=h1.ID inner join Highschooler h2 on h2.ID=likes.ID2) where gradeDiff>1;
+John|12|Haley|10
+
+3)select h1.name ,t.id1,t.id2,h2.name from highschooler h1  inner join highschooler h2  inner join (select l1.id1,l1.id2 from likes l1 inner join  likes l2 where l1.id1=l2.id2 and l1.id2=l2.id1 and l1.id1<l2.id1)as t where h1.id=t.id1 and h2.id=t.id2;
++---------+------+------+-----------+
+| name    | id1  | id2  | name      |
++---------+------+------+-----------+
+| Gabriel | 1689 | 1709 | Cassandra |
+| Jessica | 1501 | 1934 | Kyle      |
++---------+------+------+-----------+
+2 rows in set (0.00 sec)
+
+
+4)select h.id,h.name,h.grade from highschooler h  where h.id not in (select id2 from likes) union select h1.id,h1.name,h1.grade from highschooler h1 where h1.id not in (select id1 from likes);
++------+----------+-------+
+| id   | name     | grade |
++------+----------+-------+
+| 1510 | Jordan   |     9 |
+| 1381 | Tiffany  |     9 |
+| 1782 | Andrew   |    10 |
+| 1641 | Brittany |    10 |
+| 1316 | Austin   |    11 |
+| 1911 | Gabriel  |    11 |
+| 1025 | John     |    12 |
+| 1661 | Logan    |    12 |
+| 1101 | Haley    |    10 |
+| 1468 | Kris     |    10 |
+| 1304 | Jordan   |    12 |
++------+----------+-------+
+11 rows in set (0.00 sec)
+
+5)  select distinct t.id2 ,h.name from highschooler h inner join   (select l1.id2 from likes l1 where l1.id1 in(select id1 from likes))as t where t.id2 not in (select id1 from likes)  and h.id=t.id2;
++------+--------+
+| id2  | name   |
++------+--------+
+| 1101 | Haley  |
+| 1468 | Kris   |
+| 1304 | Jordan |
++------+--------+
+3 rows in set (0.00 sec)
+
+6) select t.id1,h2.name,t.grade1,t.id2,h3.name,t.grade2 from highschooler h2 inner join highschooler h3 inner join (select f1.id1,h.grade as grade1,f1.id2,h1.grade as grade2 from friend  f1  inner join highschooler h inner join highschooler h1 where f1.id1=h.id and h1.id=f1.id2)as t where grade1=grade2 and h2.id=t.id1 and h3.id=t.id2 ;
++------+-----------+--------+------+-----------+--------+
+| id1  | name      | grade1 | id2  | name      | grade2 |
++------+-----------+--------+------+-----------+--------+
+| 1510 | Jordan    |      9 | 1381 | Tiffany   |      9 |
+| 1510 | Jordan    |      9 | 1689 | Gabriel   |      9 |
+| 1689 | Gabriel   |      9 | 1709 | Cassandra |      9 |
+| 1782 | Andrew    |     10 | 1468 | Kris      |     10 |
+| 1468 | Kris      |     10 | 1101 | Haley     |     10 |
+| 1468 | Kris      |     10 | 1641 | Brittany  |     10 |
+| 1101 | Haley     |     10 | 1641 | Brittany  |     10 |
+| 1247 | Alexis    |     11 | 1911 | Gabriel   |     11 |
+| 1247 | Alexis    |     11 | 1501 | Jessica   |     11 |
+| 1911 | Gabriel   |     11 | 1501 | Jessica   |     11 |
+| 1934 | Kyle      |     12 | 1304 | Jordan    |     12 |
+| 1304 | Jordan    |     12 | 1661 | Logan     |     12 |
+| 1661 | Logan     |     12 | 1025 | John      |     12 |
+| 1381 | Tiffany   |      9 | 1510 | Jordan    |      9 |
+| 1689 | Gabriel   |      9 | 1510 | Jordan    |      9 |
+| 1709 | Cassandra |      9 | 1689 | Gabriel   |      9 |
+| 1468 | Kris      |     10 | 1782 | Andrew    |     10 |
+| 1101 | Haley     |     10 | 1468 | Kris      |     10 |
+| 1641 | Brittany  |     10 | 1468 | Kris      |     10 |
+| 1641 | Brittany  |     10 | 1101 | Haley     |     10 |
+| 1911 | Gabriel   |     11 | 1247 | Alexis    |     11 |
+| 1501 | Jessica   |     11 | 1247 | Alexis    |     11 |
+| 1501 | Jessica   |     11 | 1911 | Gabriel   |     11 |
+| 1304 | Jordan    |     12 | 1934 | Kyle      |     12 |
+| 1661 | Logan     |     12 | 1304 | Jordan    |     12 |
+| 1025 | John      |     12 | 1661 | Logan     |     12 |
++------+-----------+--------+------+-----------+--------+
+26 rows in set (0.00 sec)
+
+
+7)
+
+8)select count(distinct(id)) - tt.sums from highschooler inner join (select sum(t.count) as sums  from (select count(name) as count from highschooler group by name having count<=1)as t)as tt;
++-------------------------------+
+| count(distinct(id)) - tt.sums |
++-------------------------------+
+|                             4 |
++-------------------------------+
+1 row in set (0.00 sec)
+9)select id2,h.name,h.grade from likes inner join highschooler h where h.id=id2 group by id2 having count(id2)>=2;
++------+-----------+-------+
+| id2  | name      | grade |
++------+-----------+-------+
+| 1468 | Kris      |    10 |
+| 1709 | Cassandra |     9 |
++------+-----------+-------+
+2 rows in set (0.00 sec)
+10)(select t.id1,h1.name,t.id2,h2.name,l2.id2,h3.name from likes l2 inner join highschooler h1 inner join highschooler h2 inner join highschooler h3 inner join (select id1,id2 from likes l1)as t where l2.id1=t.id2 and t.id1!=l2.id2 and h1.id=t.id1 and h2.id=t.id2 and h3.id=l2.id2);
++------+---------+------+-----------+------+---------+
+| id1  | name    | id2  | name      | id2  | name    |
++------+---------+------+-----------+------+---------+
+| 1782 | Andrew  | 1709 | Cassandra | 1689 | Gabriel |
+| 1911 | Gabriel | 1247 | Alexis    | 1468 | Kris    |
++------+---------+------+-----------+------+---------+
+2 rows in set (0.00 sec)
+
+
+
+11) select f1.id1,h.grade as grade1,f1.id2,h1.grade as grade2 from friend  f1  inner join highschooler h inner join highschooler h1 where f1.id1=h.id and h1.id=f1.id2 and h.grade!=h1.grade;
++------+--------+------+--------+
+| id1  | grade1 | id2  | grade2 |
++------+--------+------+--------+
+| 1381 |      9 | 1247 |     11 |
+| 1709 |      9 | 1247 |     11 |
+| 1689 |      9 | 1782 |     10 |
+| 1782 |     10 | 1316 |     11 |
+| 1782 |     10 | 1304 |     12 |
+| 1501 |     11 | 1934 |     12 |
+| 1316 |     11 | 1934 |     12 |
+| 1247 |     11 | 1381 |      9 |
+| 1247 |     11 | 1709 |      9 |
+| 1782 |     10 | 1689 |      9 |
+| 1316 |     11 | 1782 |     10 |
+| 1304 |     12 | 1782 |     10 |
+| 1934 |     12 | 1501 |     11 |
+| 1934 |     12 | 1316 |     11 |
++------+--------+------+--------+
+14 rows in set (0.00 sec)
+
+12) select avg(t.counts),t.id1 as average from (select count(id2) as counts,id1 from friend group by id1) as t group by t.id1;
++---------------+---------+
+| avg(t.counts) | average |
++---------------+---------+
+|        1.0000 |    1025 |
+|        2.0000 |    1101 |
+|        4.0000 |    1247 |
+|        3.0000 |    1304 |
+|        2.0000 |    1316 |
+|        2.0000 |    1381 |
+|        3.0000 |    1468 |
+|        3.0000 |    1501 |
+|        2.0000 |    1510 |
+|        2.0000 |    1641 |
+|        2.0000 |    1661 |
+|        3.0000 |    1689 |
+|        2.0000 |    1709 |
+|        4.0000 |    1782 |
+|        2.0000 |    1911 |
+|        3.0000 |    1934 |
++---------------+---------+
+16 rows in set (0.00 sec)
+
+14) select h.name from friend f inner join highschooler h on f.id1=h.id group by f.id1 having count(id1)= (select max(counts) as maxs from (select count(id2) as counts,id2 from friend group by id2) as t);
++--------+
+| name   |
++--------+
+| Alexis |
+| Andrew |
++--------+
+2 rows in set (0.02 sec)
+
+
+
