@@ -1,0 +1,64 @@
+  ProblemSet01-CI_CD  31st August 2018  
+ Submitted BY sathya.a.loganathan  
+
+
+
+1)get first name and last name from user and print your full name 
+value_1=raw_input("enter the value1")
+value_2=raw_input("enter the value2")
+print("first value-%s,second value-%s"%(value_1,value_2))
+
+2) get your full name, age as input from user and print first name and last name , age using string slicing
+ i) 2 raw_input get name  and age 
+ ii) print first name and last name and age 
+value=raw_input("Enter the full name")
+age=raw_input("enter the age")
+print("first_name-%s"%value[0:4])
+print("last_name-%s"%value[4:])
+print("age is %s"%age)"""
+
+ 
+3)Calculating your birth number in numerology
+26/11/1978
+2+6+1+1+1+7+8 = 8
+var="26/05/1997"
+sum=int(var[0])+int(var[1])+int(var[3])+int(var[4])+int(var[6])+int(var[7])+int(var[8])+int(var[9])
+print(sum)
+temp=0
+while(sum!=0):
+     temp=temp+sum%10
+     sum=sum/10
+
+print(temp)
+
+4) Write a Python program to perform sum of three given integers. However, if any of the two values are equal then sum will be zero (eg : 2+1+1 = 0)
+var_1=input("enter the first nummber")
+var_2=input("enter the second number")
+var_3=input("enter the third number")
+if(var_1==var_2 or var_2==var_3 or var_3==var_1):print(0)
+else:sum=var_1+var_2+var_3
+print(sum)
+
+5) Declare a string variable - try all string functions / try string slicing with few examples
+a="aj"
+print a.isalnum()
+
+a1="10ad!"
+print a1.isalnum()
+
+
+b="hello"
+print(b.capitalize())
+print(b.center(10,'a'))
+
+
+str = "this is string  wow example....wow!!!";
+print str.count("wow", 4, 40)
+
+str1="this is my first book"
+print str1.endswith("rst",0,16)
+
+str1="this is my first book"
+print str1.find("is")
+
+
