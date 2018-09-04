@@ -1,0 +1,72 @@
+ ProblemSet02-CI_CD  4th september 2018   
+ Submitted BY sathya.a.loganathan   
+
+
+1)first_name=raw_input("enter the first_name")
+last_name=raw_input("enter the last name")
+print("name-%s %s"%(first_name,last_name))
+
+2)value=raw_input("Enter the full name")
+age=raw_input("enter the age")
+print("first_name-%s"%value[0:4])
+print("last_name-%s"%value[4:])
+print("age is %s"%age)
+if int(age)>=18 :print("eligible to vote")
+else:print("not eligible")
+
+3)input=raw_input("enter the date")
+sums=0
+for p in input :
+       
+	if(p=='/' or p=='-'):continue
+	else:sums=sums+int(p)
+print(sums)
+
+4)var_1=input("enter the first nummber")
+var_2=input("enter the second number")
+var_3=input("enter the third number")
+if(var_1==var_2 or var_2==var_3 or var_3==var_1):print(0)
+else:sum=var_1+var_2+var_3
+print(sum)
+
+5)year=input("enter the year")
+if year%4 == 0  :print(" leap year")
+else:print("isn't a leap year")
+
+6)var=raw_input("enter the string")
+low=0
+up=0
+for i in var :
+	if i.islower() :
+		low=low+1
+
+	elif i.isupper():
+		up=up+1
+	else:print("")
+print("lower is %s"%low)
+print("upper is %s"%up)
+
+7)var=raw_input("enter the password")
+sp=['@','_','!','#','$','%','^','&','*','?','|']
+count=0
+for i in var :
+	if(i in sp):
+		count=count+1
+		var=var.replace(i,"")
+if(count>=1):
+	for i in var :
+		if(i.isalpha()):var=var.replace(i,"")
+print(var.isdigit())
+
+8)vlists=[10,20,30,40,54,77,23]
+sums=0
+for i in vlists :
+	if(i%2==0):sums=sums+i
+	else:continue
+print(sums)
+
+9)str=raw_  input("enter the input")
+lists=str.split(',')
+print(lists)
+tuples=tuple(lists)
+print(tuples)
