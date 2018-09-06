@@ -1,0 +1,75 @@
+ProblemSet01-CI_CD  6st september 2018   
+Submitted BY sathya.a.loganathan   
+1)import operator
+tuple_1=()
+dic={}
+input=raw_input("enter the string")
+lists_1=list(input)
+lists_1.sort()
+print(lists_1)
+d={}
+for i in range(len(lists_1)-1):
+	if(lists_1[i]!=lists_1[i+1]):
+		print(i,i+1)
+		counts=lists_1.count(lists_1[i])
+		d[lists_1[i]]=counts
+		
+if lists_1[len(lists_1)-2] == lists_1[len(lists_1)-1]:
+		counts=lists_1.count(lists_1[i])
+		d[lists_1[i]]=counts	
+else:
+		counts=lists_1.count(lists_1[len(lists_1)-1])
+		d[lists_1[len(lists_1)-1]]=counts	
+sorted_x = sorted(d.items(), key=operator.itemgetter(1))
+print(sorted_x)
+mylist=sorted_x
+
+
+
+2)"""
+1 st method:
+def inputs(len):
+	sets=set()
+	for i in range(int(len)):
+		value=raw_input("enter the value for sets")
+		sets.add(value)
+	return sets	
+	
+def check_subset(set_A,set_B):
+	print(set_A.issubset(set_B))
+	
+
+input=raw_input("enter the iteration value")
+for i in range(int(input)):
+	len1=raw_input("enter the length of  set1")
+	set_A=inputs(len1)
+	print(set_A)
+	len2=raw_input("enter the length of  set2")
+	set_B=inputs(len2)
+	print(set_B)
+	check_subset(set_A,set_B)
+	
+"""
+"""
+2 nd  method:
+def inputs():
+	values=raw_input("enter the value")
+	lists=values.split(" ")
+	sets=set(lists)
+	return sets
+	
+def check_subset(set_A,set_B):
+	print(set_A.issubset(set_B))
+	
+
+input=raw_input("enter the iteration value")
+for i in range(int(input)):
+	#len1=raw_input("enter the length of  set1")
+	set_A=inputs()
+	print(set_A)
+	#len2=raw_input("enter the length of  set2")
+	set_B=inputs()
+	print(set_B)
+	check_subset(set_A,set_B)
+	"""
+	
