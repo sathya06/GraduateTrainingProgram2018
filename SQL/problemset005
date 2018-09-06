@@ -1,0 +1,159 @@
+
+ ProblemSet05-sql  29th august 2018   
+  Submitted BY sathya.a.loganathan   
+
+
+1) select  m_name from musician inner join (select concert_orgniser from concert where concert_venue='Assembly Rooms' and con_date>'01-02-1997') as t where m_no=t.concert_orgniser;
++---------------+
+| m_name        |
++---------------+
+| James Steeple |
++---------------+
+1 row in set, 1 warning (0.01 sec)
+
+2)select m_no,born_in from musician m inner join (select perf_is,instrument from performer where instrument in('violin','guitar'))as t where m_no=t.perf_is and born_in  in (select place_no from place where place_country='England');
++------+---------+
+| m_no | born_in |
++------+---------+
+|    4 |       5 |
+|    5 |       7 |
+|    6 |       7 |
+|    8 |       1 |
+|   12 |       5 |
+|   14 |       7 |
++------+---------+
+6 rows in set (0.00 sec)
+3) select concert_no,con_date,place_town  from concert inner join place p  where concert_in in (select place_no from place where place_country='USA') and place_no=concert_in;
++------------+------------+------------+
+| concert_no | con_date   | place_town |
++------------+------------+------------+
+|          8 | 1997-06-15 | New York   |
++------------+------------+------------+
+1 row in set (0.00 sec)
+
+
+4)select count(concert_no),t3.c_in from concert inner join (select c_in from composition inner join(select cmpn_no from has_composed  inner join(select comp_no from composer  where comp_is=(select m_no from musician where m_name="Andy Jones"))as t where cmpr_no=t.comp_no)as tt where c_no=tt.cmpn_no)as t3 group by concert_in having concert_in=t3.c_in;
++-------------------+------+
+| count(concert_no) | c_in |
++-------------------+------+
+|                 2 |    2 |
++-------------------+------+
+1 row in set (0.00 sec)
+
+> select count(performed_in),t.m_no from performance p inner join  (select m_no from musician m inner join composer c where comp_is=(select m_no from musician where m_name="Andy Jones") and m_no=comp_is) as t  group by performed having performed=t.m_no ;
++---------------------+------+
+| count(performed_in) | m_no |
++---------------------+------+
+|                   2 |   19 |
++---------------------+------+
+1 row in set (0.00 se
+
+
+mysql> select count(perf_is),instrument from  performer group by instrument;
++----------------+------------+
+| count(perf_is) | instrument |
++----------------+------------+
+|              1 | banjo      |
+|              3 | bass       |
+|              3 | cello      |
+|              1 | clarinet   |
+|              1 | cornet     |
+|              2 | drums      |
+|              2 | flute      |
+|              2 | guitar     |
+|              1 | horn       |
+|              1 | trombone   |
+|              1 | trumpet    |
+|              4 | viola      |
+|              7 | violin     |
++----------------+------------+
+13 rows in set (0.00 sec)
+
+mysql> select count(instrument),perf_is from performer group by perf_is;
++-------------------+---------+
+| count(instrument) | perf_is |
++-------------------+---------+
+|                 3 |       2 |
+|                 1 |       3 |
+|                 2 |       4 |
+|                 1 |       5 |
+|                 3 |       6 |
+|                 1 |       7 |
+|                 3 |       8 |
+|                 2 |      10 |
+|                 3 |      12 |
+|                 2 |      14 |
+|                 2 |      16 |
+|                 3 |      18 |
+|                 3 |      20 |
++-------------------+---------+
+13 rows in set (0.00 sec)
+
+
+
+
+
+
+
+6) select perf_is,m_name from performer p inner join musician m where instrument in (select instrument from performer where perf_is =(select m_no from musician where m_name="Theo Mengel"))and perf_is=m_no;
++---------+------------------+
+| perf_is | m_name           |
++---------+------------------+
+|       2 | John Smith       |
+|       6 | Theo Mengel      |
+|       8 | Harry Forte      |
+|      14 | Alan Fluff       |
+|       6 | Theo Mengel      |
+|       8 | Harry Forte      |
+|      10 | Jeff Dawn        |
+|       5 | James First      |
+|       4 | Harriet Smithson |
+|       6 | Theo Mengel      |
++---------+------------------+
+10 rows in set (0.00 sec)
+
+7)(select band_id,count(player) as counts,avg(player) as aveg from plays_in group by band_id having counts>aveg);
++---------+--------+--------+
+| band_id | counts | aveg   |
++---------+--------+--------+
+|       1 |      7 | 4.8571 |
++---------+--------+--------+
+1 row in set (0.00 sec)
+
+8)select m_no,m_name from musician m inner join (select distinct comp_is from composer c inner join concert c2 where comp_is=concert_orgniser) as  t where t.comp_is=m_no and living_in in (select place_no  from place where place_country="England");
++------+-------------+
+| m_no | m_name      |
++------+-------------+
+|    3 | Helen Smyth |
++------+-------------+
+1 row in set (0.00 sec)
+
+9)
+ (select t.counts,t.instrument,count(t.perf_is) from (select count(instrument) as counts,instrument,perf_is from performer group by instrument)as t
+   where t.counts=(select  min(counte) from (select count(instrument) as counte from performer group by instrument)as t2)group by instrument);
++--------+------------+---------+
+| counts | instrument | perf_is |
++--------+------------+---------+
+|      1 | banjo      |       6 |
+|      1 | clarinet   |       8 |
+|      1 | cornet     |      20 |
+|      1 | horn       |       3 |
+|      1 | trombone   |      20 |
+|      1 | trumpet    |      16 |
++--------+------------+---------+
+6 rows in set (0.00 sec)
+
+
+(select t.counts,t.instrument,count(t.perf_is) from (select count(instrument) as counts,instrument,perf_is from performer group by instrument)as t
+    where t.counts=(select  min(counte) from (select count(instrument) as counte from performer group by instrument)as t2)group by instrument);
++--------+------------+------------------+
+| counts | instrument | count(t.perf_is) |
++--------+------------+------------------+
+|      1 | banjo      |                1 |
+|      1 | clarinet   |                1 |
+|      1 | cornet     |                1 |
+|      1 | horn       |                1 |
+|      1 | trombone   |                1 |
+|      1 | trumpet    |                1 |
++--------+------------+------------------+
+6 rows in set (0.00 sec)
